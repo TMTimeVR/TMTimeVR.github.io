@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>TMTime</title>
+    <style>
+        /* Body Styles */
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background-color: #000000;
+            margin: 0;
+            padding: 40px;
+            overflow: hidden; /* Prevent scrollbars */
+        }
+
+        /* Header Styles */
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            background: linear-gradient(to bottom, #333333, #000000);
+            padding: 20px;
+        }
+
+        /* Contact Information Styles */
+        .container {
+            position: relative;
+            width: fit-content;
+            margin: 0 auto;
+            transform-style: preserve-3d;
+        }
+
+        .contact-info {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            font-size: 60px;
+            font-weight: bold;
+            text-align: center;
+            color: #ffffff;
+            margin-bottom: 20px;
+            position: relative;
+            transform-origin: 50% 50%;
+            transform-style: preserve-3d;
+        }
+
+        /* Random Text Styles */
+        #random-text {
+            position: absolute;
+            top: calc(50% - 50px);
+            left: calc(50% - 200px);
+            transform-origin: center;
+            font-size: 24px;
+            color: #00ff00;
+            animation: rotateText 5s linear infinite, changeColor 5s linear infinite;
+        }
+
+        #random-text:hover {
+            animation-play-state: paused;
+        }
+
+        #random-text:active {
+            animation: changeColor 5s linear infinite;
+        }
+
+        /* DVD Styles */
+        #dvd {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 24px;
+            color: #000000;
+            background-color: #ff8800;
+            padding: 10px;
+            z-index: 9999;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="banner.PNG" alt="Banner Image" width="1000" height="200">
+    </header>
+    <div class="container">
+        <h1 class="contact-info" id="title">TMTime</h1>
+    </div>
+    <div id="dvd">
+        very good website yes indeed
+        <div id="live-reaction-gif">
+            <img id="live-reaction-img" src="Image.GIF" alt="Live Reaction GIF" style="width: 50%;">
+        </div>        
+    </div>
+
+    <script>
+        const container = document.querySelector('.container');
+        const liveReactionImg = document.getElementById('live-reaction-img');
+        const dvd = document.getElementById('dvd');
+
+        function showGif() {
+            liveReactionImg.style.display = 'block';
+        }
+
+        function hideGif() {
+            liveReactionImg.style.display = 'none';
+        }
+        container.addEventListener('mousemove', rotateText);
+        dvd.addEventListener('mouseenter', showGif);
+        dvd.addEventListener('mouseleave', hideGif);
+
+        // Set the GIF to be hidden by default
+        liveReactionImg.style.display = 'none';
+
+        // DVD Animation
+        let x = 0,
+            y = 0,
+            dirX = 1,
+            dirY = 1;
+        const speed = 2;
+        const pallete = ["#ff8800", "#e124ff", "#6a19ff", "#ff2188"];
+        dvd.style.backgroundColor = pallete[0];
+        let prevColorChoiceIndex = 0;
+        const dvdWidth = dvd.clientWidth;
+        const dvdHeight = dvd.clientHeight;
+
+        function getNewRandomColor() {
+            const currentPallete = [...pallete];
+            currentPallete.splice(prevColorChoiceIndex, 1);
+            const colorChoiceIndex = Math.floor(Math.random() * currentPallete.length);
+            prevColorChoiceIndex = colorChoiceIndex < prevColorChoiceIndex ? colorChoiceIndex : colorChoiceIndex + 1;
+            const colorChoice = currentPallete[colorChoiceIndex];
+            return colorChoice;
+        }
+
+        function animate() {
+            const screenHeight = window.innerHeight;
+            const screenWidth = window.innerWidth;
+
+            if (y + dvdHeight >= screenHeight || y < 0) {
+                dirY *= -1.05;
+                dvd.style.backgroundColor = getNewRandomColor();
+            }
+            if (x + dvdWidth >= screenWidth || x < 0) {
+                dirX *= -1.05;
+                dvd.style.backgroundColor = getNewRandomColor();
+            }
+            x += dirX * speed;
+            y += dirY * speed;
+            dvd.style.left = x + "px";
+            dvd.style.top = y + "px";
+            window.requestAnimationFrame(animate);
+        }
+
+        dvd.addEventListener("click", function () {
+            dirX = Math.round(Math.random()) * 2 - 1;
+            dirY = Math.round(Math.random()) * 2 - 1;
+        });
+        function rotateText(event) {
+            const x = (event.clientX / window.innerWidth - 0.5) * 40;
+            const y = (event.clientY / window.innerHeight - 0.5) * 60;
+
+            contactInfo.forEach((info) => {
+                info.style.transform = `perspective(1000px) rotateX(${-y}deg) rotateY(${x}deg)`;
+            });
+        }
+
+        window.requestAnimationFrame(animate);
+    </script>
+
+    <br>
+    <center>
+        <a href="https://sites.google.com/view/hamster-runners/startseite?" id="element2" class="myButton" onClick="javascript:changeText(1)">My very epik geam websyte!11!1</a>
+    </center>
+    <center>
+    <a href="https://www.meta.com/de-de/experiences/6878051502218331/" id="element2" class="myButton" onClick="javascript:changeText(1)">My ultra multra epik geam!1111!!11!!!!</a>
+    </center>
+    <center>
+    <a href="https://www.youtube.com/@tmtimevr" id="element2" class="myButton" onClick="javascript:changeText(1)">Verry goud yt channel!!1!!!</a>
+    </center>
+    <script language="javascript">
+        function changeText(idElement) {
+            document.getElementById('element1').innerHTML = 'Loading.. <i class="fa fa-refresh fa-spin fa-fw"></i>';
+        }
+    </script>
+</body>
+</html>
