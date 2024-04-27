@@ -3,66 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Photon PUN Users Count</title>
+    <title>Photon PUN Server Status</title>
     <style>
         body {
             font-family: Arial, sans-serif;
+            text-align: center;
             margin: 0;
             padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #f0f0f0;
         }
-        #usersCount {
+        #status {
             font-size: 24px;
+            margin-top: 50px;
         }
     </style>
 </head>
 <body>
-    <div id="usersCount">Loading...</div>
+    <h1>Photon PUN Server Status</h1>
+    <div id="status">Loading...</div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/photon/1.0.0/photon.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/photon/2.10.1/photon.min.js"></script>
     <script>
-        // Replace 'yourAppId' with your actual Photon PUN App ID
-        const appId = '76913ed-4e3e-4fcb-b13b-1171159f3aa';
-        const region = 'eu'; // e.g., 'us', 'eu', 'asia', etc.
-
+        // Replace 'YOUR_APP_ID' with your Photon app ID
+        const appId = "76913ed-4e3e-4fcb-b13b-1171159f3aa";
+        
         // Initialize Photon
-        const photon = new Photon();
-
-        // Connect to Photon PUN server
-        const client = photon.load({appId: appId, region: region});
+        const client = new Photon.LoadBalancing.LoadBalancingClient();
 
         // Subscribe to events
-        client.on('connect', () => {
-            console.log('Connected to Photon server');
-        });
+        client.onStateChange = function(state) {
+            if (state === Photon.LoadBalancing.LoadBalancingClient.State.Joined) {
+                updateStatus(client.myRoom().playerCount);
+            }
+        };
 
-        client.on('error', (error) => {
-            console.error('Error:', error);
-        });
+        client.connectToRegionMaster("eu");
 
-        client.on('join', (event) => {
-            console.log('User joined:', event.actorNr);
-            updateUsersCount();
-        });
-
-        client.on('leave', (event) => {
-            console.log('User left:', event.actorNr);
-            updateUsersCount();
-        });
-
-        // Function to update users count
-        function updateUsersCount() {
-            const usersCount = client.actors.length;
-            document.getElementById('usersCount').innerText = `Users connected: ${usersCount}`;
+        // Update status function
+        function updateStatus(count) {
+            document.getElementById('status').innerText = "Number of users connected: " + count;
         }
-
-        // Connect to Photon server
-        client.connect();
     </script>
 </body>
 </html>
-
