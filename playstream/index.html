@@ -15,6 +15,10 @@
       border: 1px solid #ccc;
       padding: 10px;
     }
+
+    .error {
+      color: red;
+    }
   </style>
 </head>
 <body>
@@ -42,6 +46,8 @@
 
       eventSource.onerror = function(error) {
         console.error("Event stream error:", error);
+        // Display error in the event log
+        displayError("Event stream error: " + error.message);
         // Attempt to reconnect after an error
         setTimeout(connectToEventStream, 5000);
       };
@@ -53,6 +59,15 @@
       const eventItem = document.createElement("div");
       eventItem.textContent = JSON.stringify(eventData);
       eventLog.appendChild(eventItem);
+    }
+
+    // Function to display errors in the event log
+    function displayError(errorMessage) {
+      const eventLog = document.getElementById("eventLog");
+      const errorItem = document.createElement("div");
+      errorItem.textContent = errorMessage;
+      errorItem.classList.add("error");
+      eventLog.appendChild(errorItem);
     }
 
     // Connect to PlayFab event stream when the page loads
