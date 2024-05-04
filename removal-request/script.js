@@ -26,7 +26,7 @@ form.addEventListener('submit', async (event) => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        content: `**Monkey Mall Account Removal Request:**\nUsername: ${username}\nReason (Optional): ${reason || 'None provided'}\n`,
+        content: `**Monkey Mall Account Removal Request:**\nUsername: ${username}\nReason: ${reason || 'None provided'}\n`,
       }),
     });
 
