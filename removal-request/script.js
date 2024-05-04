@@ -13,6 +13,11 @@ form.addEventListener('submit', async (event) => {
     messageEl.textContent = 'Error: Please enter your Meta Quest username.';
     return;
   }
+  
+  if (reason === '') {
+  messageEl.textContent = 'Error: Please enter your Meta Quest username.';
+  return;
+}
 
   const data = {
     username,
