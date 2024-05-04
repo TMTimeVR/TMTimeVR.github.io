@@ -70,10 +70,18 @@
       const username = document.getElementById('username').value;
       const reason = document.getElementById('reason').value;
 
+      // Client-side validation (optional but recommended)
+      if (!username) {
+        message.textContent = 'Error: Please enter your Meta Quest Username.';
+        return;  // Prevent sending request if username is missing
+      }
+
       const data = {
         username: username,
-        reason: reason,
+        reason: reason || '', // Set reason to empty string if not provided
       };
+
+      console.log(data); // Log data object for inspection
 
       fetch('https://discord.com/api/webhooks/1236291748242788414/UrUBhrlstiYB9RaLdsTZNaaOx-wfqBzO_RQkOYZy_pas0rgLKhGtlSX9rnqyDLsHsAkb', {
         method: 'POST',
