@@ -84,9 +84,9 @@
       })
       .then(response => {
         if (!response.ok) {
-          throw new Error(`Error sending request: ${response.statusText}`);
+          throw new Error(`Error: Discord request failed with status ${response.status}`);
         }
-        message.textContent = 'Your account removal request has been submitted. We will ceck your request (it might take more then two business days).';
+        message.textContent = 'Your account removal request has been submitted. You will be contacted shortly.';
       })
       .catch(error => {
         message.textContent = `Error: ${error.message}`;
