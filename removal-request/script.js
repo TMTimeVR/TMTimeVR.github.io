@@ -1,14 +1,16 @@
 const form = document.getElementById('removal-form');
-const message = document.getElementById('message');
+const usernameInput = document.getElementById('username');
+const reasonInput = document.getElementById('reason');
+const messageEl = document.getElementById('message');
 
 form.addEventListener('submit', async (event) => {
-  event.preventDefault();
+  event.preventDefault(); // Prevent default form submission
 
-  const username = document.getElementById('username').value.trim();
-  const reason = document.getElementById('reason').value.trim();
+  const username = usernameInput.value.trim();
+  const reason = reasonInput.value.trim();
 
-  if (!username) {
-    message.textContent = 'Error: Please enter your Meta Quest username.';
+  if (username === '') {
+    messageEl.textContent = 'Error: Please enter your Meta Quest username.';
     return;
   }
 
@@ -23,17 +25,19 @@ form.addEventListener('submit', async (event) => {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(data),
+      body: JSON.stringify({
+        content: `**Monkey Mall Account Removal Request:**\nUsername: ${username}\nReason (Optional): ${reason || 'None provided'}\n`,
+      }),
     });
 
     if (response.ok) {
-      message.textContent = 'Your removal request has been submitted. You will be contacted shortly.';
-      form.reset();
+      messageEl.textContent = 'Account removal request submitted. Please allow for processing.';
+      form.reset(); // Clear form after successful submission
     } else {
-      message.textContent = 'An error occurred. Please try again later.';
+      messageEl.textContent = `Error: ${response.statusText}`;
     }
   } catch (error) {
-    console.error(error);
-    message.textContent = 'An error occurred. Please try again later.';
+    console.error('Error sending request:', error);
+    messageEl.textContent = 'An error occurred. Please try again later.';
   }
 });
