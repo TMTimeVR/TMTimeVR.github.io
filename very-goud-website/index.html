@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>i hate myself</title>
+<title>i hate myself</title></title>
 <style>
     body {
         background-color: black;
@@ -23,19 +23,29 @@
 <body>
 
 <div class="video-container">
-    <video id="video1" controls autoplay>
+    <video id="video1" controls>
         <source src="Goofy ahh doorbell.mp4" type="video/mp4">
     </video>
-    <video id="video2" controls autoplay>
+    <video id="video2" controls>
         <source src="My Goofy Ahh Uncle.mp4" type="video/mp4">
     </video>
-    <video id="video3" controls autoplay>
+    <video id="video3" controls>
         <source src="My Goofy Ahh Dad.mp4" type="video/mp4">
     </video>
-    <video id="video4" controls autoplay>
+    <video id="video4" controls>
         <source src="Osu! More Goofy Ahh Maps.mp4" type="video/mp4">
     </video>
 </div>
+
+<script>
+    // Play all videos instantly when the page loads
+    window.onload = function() {
+        var videos = document.querySelectorAll('video');
+        videos.forEach(function(video) {
+            video.play();
+        });
+    };
+</script>
 
 </body>
 </html>
