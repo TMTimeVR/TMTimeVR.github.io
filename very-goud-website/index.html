@@ -3,8 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>i hate woman</title>
+<title>Multiple Video Player</title>
 <style>
+    body {
+        background-color: black;
+        margin: 0;
+        padding: 0;
+    }
     .video-container {
         display: flex;
         justify-content: space-around;
@@ -18,27 +23,19 @@
 <body>
 
 <div class="video-container">
-    <video id="video1" controls>
+    <video id="video1" controls autoplay>
         <source src="Goofy ahh doorbell.mp4" type="video/mp4">
     </video>
-    <video id="video2" controls>
+    <video id="video2" controls autoplay>
         <source src="My Goofy Ahh Uncle.mp4" type="video/mp4">
     </video>
-    <video id="video3" controls>
+    <video id="video3" controls autoplay>
         <source src="My Goofy Ahh Dad.mp4" type="video/mp4">
     </video>
-    <video id="video4" controls>
+    <video id="video4" controls autoplay>
         <source src="Osu! More Goofy Ahh Maps.mp4" type="video/mp4">
     </video>
 </div>
-
-<script>
-    // Play all videos simultaneously
-    var videos = document.querySelectorAll('video');
-    videos.forEach(function(video) {
-        video.play();
-    });
-</script>
 
 </body>
 </html>
