@@ -58,18 +58,13 @@
 
     let questionIndex = 0;
 
-    function getRandomQuestion() {
-        const index = Math.floor(Math.random() * questions.length);
-        return questions[index];
-    }
-
     function askQuestion() {
         if (questionIndex < questions.length) {
             animatePluh(3, () => {
                 const questionElement = document.getElementById("question");
-                questionElement.textContent = getRandomQuestion();
+                questionElement.textContent = questions[questionIndex];
+                questionIndex++;
             });
-            questionIndex++;
         } else {
             displayClosingMessage();
         }
