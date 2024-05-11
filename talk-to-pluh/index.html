@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Talk with Pluh</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+    }
+    #pluh {
+        max-width: 300px;
+        display: block;
+        margin: 20px auto;
+    }
+    #conversation {
+        width: 80%;
+        max-width: 600px;
+        margin: 20px auto;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+        text-align: left;
+    }
+</style>
+</head>
+<body>
+<img id="pluh" src="pluh.png" alt="Pluh">
+<div id="conversation">
+    <p id="question"></p>
+    <button onclick="answerYes()">Yes</button>
+    <button onclick="answerNo()">No</button>
+</div>
+<script>
+    const questions = [
+        "Do you like bananas?",
+        "Is the sky purple?",
+        "Do you think pineapples belong on pizza?",
+        "Would you rather fight one horse-sized duck or a hundred duck-sized horses?",
+        "Do you believe in aliens?"
+    ];
+
+    function getRandomQuestion() {
+        const index = Math.floor(Math.random() * questions.length);
+        return questions[index];
+    }
+
+    function askQuestion() {
+        const questionElement = document.getElementById("question");
+        questionElement.textContent = getRandomQuestion();
+    }
+
+    function answerYes() {
+        addToConversation("Yes");
+        askQuestion();
+    }
+
+    function answerNo() {
+        addToConversation("No");
+        askQuestion();
+    }
+
+    function addToConversation(answer) {
+        const conversation = document.getElementById("conversation");
+        const p = document.createElement("p");
+        p.textContent = answer;
+        conversation.appendChild(p);
+    }
+
+    askQuestion();
+</script>
+</body>
+</html>
