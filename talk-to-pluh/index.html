@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Talk with Pluh</title>
+<title>Interact with Pluh</title>
 <style>
     body {
         font-family: Arial, sans-serif;
@@ -53,19 +53,26 @@
         "Do you believe in aliens?"
     ];
 
+    let questionIndex = 0;
+
     function getRandomQuestion() {
         const index = Math.floor(Math.random() * questions.length);
         return questions[index];
     }
 
     function askQuestion() {
-        const questionElement = document.getElementById("question");
-        questionElement.textContent = getRandomQuestion();
-        const pluh = document.getElementById("pluh");
-        pluh.style.transform = "translate(-50%, -50%) translateY(-5px)";
-        setTimeout(() => {
-            pluh.style.transform = "translate(-50%, -50%) translateY(0)";
-        }, 300);
+        if (questionIndex < questions.length) {
+            const questionElement = document.getElementById("question");
+            questionElement.textContent = getRandomQuestion();
+            const pluh = document.getElementById("pluh");
+            pluh.style.transform = "translate(-50%, -50%) translateY(-5px)";
+            setTimeout(() => {
+                pluh.style.transform = "translate(-50%, -50%) translateY(0)";
+            }, 300);
+            questionIndex++;
+        } else {
+            displayClosingMessage();
+        }
     }
 
     function answerYes() {
@@ -83,6 +90,14 @@
         const p = document.createElement("p");
         p.textContent = answer;
         conversation.appendChild(p);
+    }
+
+    function displayClosingMessage() {
+        const conversation = document.getElementById("conversation");
+        conversation.innerHTML = "<p>Thank you for answering my questions. Come back later.</p>";
+        setTimeout(() => {
+            window.close();
+        }, 3000);
     }
 
     askQuestion();
