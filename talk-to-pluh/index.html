@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Interact with Pluh</title>
+<title>Talk with Pluh</title>
 <style>
     body {
         font-family: Arial, sans-serif;
@@ -50,7 +50,10 @@
         "Is the sky purple?",
         "Do you think pineapples belong on pizza?",
         "Would you rather fight one horse-sized duck or a hundred duck-sized horses?",
-        "Do you believe in aliens?"
+        "Do you believe in aliens?",
+        "Skibidy?",
+        "fard.",
+        "Do you have a skibidy gyat ohio rizz ultimate gyatt ohio skibidy gyat ohio rizz ultimate gyatt ohio skibidy gyat ohio rizz ultimate gyatt ohio skibidy gyat ohio rizz ultimate gyatt ohio skibidy gyat ohio rizz ultimate gyatt ohio skibidy gyat ohio rizz ultimate gyatt ohio skibidy gyat ohio rizz ultimate gyatt ohio skibidy gyat ohio rizz ultimate gyatt ohio skibidy gyat ohio rizz ultimate gyatt ohio skibidy gyat ohio rizz ultimate gyatt ohio skibidy gyat ohio rizz ultimate gyatt ohio skibidy gyat ohio rizz ultimate gyatt ohio skibidy gyat ohio rizz ultimate gyatt ohio skibidy gyat ohio rizz ultimate gyatt ohio skibidy gyat ohio rizz ultimate gyatt ohio skibidy gyat ohio rizz ultimate gyatt ohio skibidy gyat ohio rizz ultimate gyatt ohio skibidy gyat ohio rizz ultimate gyatt ohio skibidy gyat ohio rizz ultimate gyatt ohio skibidy gyat ohio rizz ultimate gyatt ohio skibidy gyat ohio rizz ultimate gyatt ohio skibidy gyat ohio rizz ultimate gyatt ohio?
     ];
 
     let questionIndex = 0;
@@ -107,7 +110,8 @@
 
     function displayClosingMessage() {
         const conversation = document.getElementById("conversation");
-        conversation.innerHTML = "<p>Thank you for answering my questions. Come back later.</p>";
+        animatePluh(3, () => 
+        conversation.innerHTML = "<p>I hate woman.</p>";
         setTimeout(() => {
             window.location.href = "about:blank"; // Redirect to a blank page to close the tab
         }, 3000);
