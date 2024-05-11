@@ -22,10 +22,6 @@
         left: 50%;
         transform: translateX(-50%);
         transition: transform 0.3s ease;
-        transform: translateX(-50%);
-        transition: transform 0.3s ease;
-        transform: translateX(-50%);
-        transition: transform 0.3s ease;
     }
     #conversation {
         width: 80%;
@@ -66,17 +62,30 @@
 
     function askQuestion() {
         if (questionIndex < questions.length) {
-            const questionElement = document.getElementById("question");
-            questionElement.textContent = getRandomQuestion();
-            const pluh = document.getElementById("pluh");
-            pluh.style.transform = "translate(-50%, -50%) translateY(-5px)";
-            setTimeout(() => {
-                pluh.style.transform = "translate(-50%, -50%) translateY(0)";
-            }, 300);
+            animatePluh(3, () => {
+                const questionElement = document.getElementById("question");
+                questionElement.textContent = getRandomQuestion();
+            });
             questionIndex++;
         } else {
             displayClosingMessage();
         }
+    }
+
+    function animatePluh(times, callback) {
+        const pluh = document.getElementById("pluh");
+        let count = 0;
+        const intervalId = setInterval(() => {
+            pluh.style.transform = "translate(-50%, -50%) translateY(-5px)";
+            setTimeout(() => {
+                pluh.style.transform = "translate(-50%, -50%) translateY(0)";
+            }, 300);
+            count++;
+            if (count === times) {
+                clearInterval(intervalId);
+                callback();
+            }
+        }, 600);
     }
 
     function answerYes() {
@@ -100,7 +109,7 @@
         const conversation = document.getElementById("conversation");
         conversation.innerHTML = "<p>Thank you for answering my questions. Come back later.</p>";
         setTimeout(() => {
-            window.close();
+            window.location.href = "about:blank"; // Redirect to a blank page to close the tab
         }, 3000);
     }
 
