@@ -110,7 +110,7 @@
 
     function displayClosingMessage() {
         const conversation = document.getElementById("conversation");
-        animatePluh(3, () => 
+        animatePluh(3, () => {
         conversation.innerHTML = "<p>I hate woman.</p>";
         setTimeout(() => {
             window.location.href = "about:blank"; // Redirect to a blank page to close the tab
