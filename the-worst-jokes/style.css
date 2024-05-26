@@ -14,3 +14,9 @@ body {
     font-size: 24px;
     margin-top: 20px;
 }
+
+.countdown {
+    font-size: 18px;
+    margin-top: 10px;
+    color: #555;
+}
